@@ -1,0 +1,57 @@
+package com.SZMYT.FactionFarming;
+
+import java.util.ArrayList;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import net.md_5.bungee.api.ChatColor;
+
+
+
+public class Main extends JavaPlugin    {
+	
+	@Override
+	public void onEnable() {
+		System.out.println("FactionFarming plugin has enabled");
+		
+		getCommand("points".setExecutor(new GuiCommand(this));
+						
+	}
+		
+	@Override
+	public void gui(Player player) {
+		
+					
+			Inventory points = Bukkit.createInventory(player, 27, ChatColor.GREEN  + "FactionPoints");
+			
+			ItemStack hoe = new ItemStack(Material.DIAMOND_HOE);
+			//ItemStack pick = new ItemStack(Material.DIAMOND_PICKAXE);
+			//ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
+			//ItemStack axe = new ItemStack(Material.DIAMOND_AXE);
+			//ItemStack fishing = new ItemStack(Material.FISHING_ROD);
+			
+			ItemMeta hoe_meta = hoe.getItemMeta();
+			hoe_meta.setDisplayName(ChatColor.GREEN + "Farming");
+			ArrayList<String> hoe_lore = new ArrayList<>();
+			hoe_lore.add(ChatColor.GRAY + "View all obtainable Farming Points");
+			hoe_meta.setLore(hoe_lore);
+			hoe.setItemMeta(hoe_meta);
+			
+		
+			points.setItem(11, hoe);
+			
+			player.openInventory(points);
+			
+		}
+				
+		return true;
+		
+		
+		
+}	
